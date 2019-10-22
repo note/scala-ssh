@@ -1,4 +1,4 @@
 login-type  = keyfile
 username    = root
-keyfile     = /root/.ssh/id_ecdsa
-fingerprint = 85:c3:88:26:3c:58:00:9f:c5:46:97:4f:8a:aa:b2:bb
+keyfile     = /root/.ssh/id_ed25519
+

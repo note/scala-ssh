@@ -3,7 +3,9 @@ version: '2.4'
 services:
   sbt:
     image: hseeberger/scala-sbt:8u222_1.3.3_2.12.10
-    command: bash -c "ssh-keyscan -t ecdsa sshd >>/root/.ssh/known_hosts && sbt shell"
+    command: bash -c "ssh-keyscan -t ed25519 sshd >>/root/.ssh/known_hosts && sbt -jvm-debug 5005 shell"
+    ports:
+      - "5005:5005"
     volumes:
       - $HOME/.ivy2:/root/.ivy2:cached
       - $HOME/.sbt:/root/.sbt:cached

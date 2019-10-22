@@ -68,9 +68,6 @@ final class SshClient(val config: HostConfig) extends ScpTransferable {
   }
 
   protected def createClient(config: HostConfig): SSHClient = {
-    import collection.JavaConverters._
-
-    println("bazinga here facotries: " + config.sshjConfig.getSignatureFactories().asScala.toList.map(_.getName))
     val client = new SSHClient(config.sshjConfig)
     config.connectTimeout.foreach(client.setConnectTimeout)
     config.connectionTimeout.foreach(client.setTimeout)

@@ -241,13 +241,8 @@ object HostKeyVerifiers {
 
   def fromKnownHostsFile(knownHostsFile: File): Try[HostKeyVerifier] =
     if (knownHostsFile.exists()) {
-      try {
-        println("bazinga OpenSSHKnownHosts knownHostsFile: " + knownHostsFile)
-        val r = new OpenSSHKnownHosts(knownHostsFile)
-        println("bazinga OpenSSHKnownHosts 0: " + r.entries().size())
-        println("bazinga OpenSSHKnownHosts 1: " + r.entries().get(0).getLine)
-        Success(r)
-      } catch { case NonFatal(e) => Failure(SSH.Error(s"Could not read $knownHostsFile", e)) }
+      try Success(new OpenSSHKnownHosts(knownHostsFile))
+      catch { case NonFatal(e) => Failure(SSH.Error(s"Could not read $knownHostsFile", e)) }
     } else Failure(SSH.Error(knownHostsFile.toString + " not found"))
 
   def forFingerprint(fingerprint: String): HostKeyVerifier =

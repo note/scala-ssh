@@ -1,0 +1,21 @@
+version: '2.4'
+
+services:
+  sbt:
+    image: hseeberger/scala-sbt:8u222_1.3.3_2.12.10
+    command: bash -c "ssh-keyscan -t ecdsa sshd >>/root/.ssh/known_hosts && sbt shell"
+    volumes:
+      - $HOME/.ivy2:/root/.ivy2:cached
+      - $HOME/.sbt:/root/.sbt:cached
+      - $HOME/.coursier:/root/.coursier:cached
+      - .:/root:cached
+      - ./volumes/client:/root/.ssh
+    depends_on:
+      - sshd
+
+  sshd:
+    image: rastasheep/ubuntu-sshd:16.04
+    volumes:
+      - ./volumes/authorized_keys:/root/.ssh/authorized_keys
+    ports:
+      - 22

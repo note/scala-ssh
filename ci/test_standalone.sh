@@ -7,6 +7,9 @@ function write_scala_ssh_config() {
   local PORT="$1"
   echo "write_scala_ssh_config: $PORT"
 
+  mkdir ~/.scala-ssh
+  echo localhost > ~/.scala-ssh/.testhost
+
   cat <<EOF >  ~/.scala-ssh/localhost
 login-type  = keyfile
 username    = root

@@ -15,15 +15,15 @@ port        = $PORT
 EOF
 }
 
-rm -rf volumes
+rm -rf ci/volumes
 
 ssh-keygen -t ed25519 -f id_ed25519 -N "" -q
 
-mkdir -p volumes/client
-cp id_ed25519.pub volumes/
-mv volumes/id_ed25519.pub volumes/authorized_keys
+mkdir -p ci/volumes/client
+cp id_ed25519.pub ci/volumes/
+mv ci/volumes/id_ed25519.pub ci/volumes/authorized_keys
 
-docker-compose up sshd &
+docker-compose -f ci/docker-compose.yml up sshd &
 
 # Just to be sure sshd started
 sleep 1

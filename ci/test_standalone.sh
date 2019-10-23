@@ -26,6 +26,7 @@ mkdir -p ci/volumes/client
 cp id_ed25519.pub ci/volumes/
 mv ci/volumes/id_ed25519.pub ci/volumes/authorized_keys
 
+docker-compose -f ci/docker-compose.yml pull sshd
 docker-compose -f ci/docker-compose.yml up sshd &
 
 # Just to be sure sshd started

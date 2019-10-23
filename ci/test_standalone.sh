@@ -29,10 +29,14 @@ mv ci/volumes/id_ed25519.pub ci/volumes/authorized_keys
 docker-compose -f ci/docker-compose.yml pull sshd
 docker-compose -f ci/docker-compose.yml up sshd &
 
+docker ps -a
+
 # Just to be sure sshd started
-sleep 2
+sleep 5
 
 docker ps -a
+docker --version
+docker-compose --version
 CONTAINER_ID=`docker ps -a -q`
 echo "sshd container_id detected: $CONTAINER_ID"
 SSHD_PORT=`docker inspect --format '{{ (index (index .NetworkSettings.Ports "22/tcp") 0).HostPort }}' "$CONTAINER_ID"`

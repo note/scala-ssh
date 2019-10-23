@@ -18,6 +18,6 @@ services:
   sshd:
     image: rastasheep/ubuntu-sshd:16.04
     volumes:
-      - ./volumes/authorized_keys:/root/.ssh/authorized_keys
+      - ./volumes/sshd:/root/.ssh/authorized_keys
     ports:
       - 22

@@ -30,8 +30,9 @@ docker-compose -f ci/docker-compose.yml pull sshd
 docker-compose -f ci/docker-compose.yml up sshd &
 
 # Just to be sure sshd started
-sleep 1
+sleep 2
 
+docker ps -a
 CONTAINER_ID=`docker ps -a -q`
 echo "sshd container_id detected: $CONTAINER_ID"
 SSHD_PORT=`docker inspect --format '{{ (index (index .NetworkSettings.Ports "22/tcp") 0).HostPort }}' "$CONTAINER_ID"`

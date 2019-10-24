@@ -2,6 +2,7 @@
 
 source scripts/common/common.sh
 
+# Check is source worked
 echo "source works? $PRIVATE_KEY_FILENAME"
 
 # there may exist files from previous run - remove them

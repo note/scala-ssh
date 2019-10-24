@@ -4,6 +4,7 @@ jdk:
 - openjdk11
 scala:
 - 2.12.8
+- 2.13.0
 script: bash ci/test_standalone.sh
 cache:
   directories:
